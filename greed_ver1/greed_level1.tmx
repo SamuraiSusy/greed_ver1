@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" width="60" height="40" tilewidth="16" tileheight="16">
+ <tileset firstgid="1" name="greed_tilet1" tilewidth="16" tileheight="16">
+  <image source="greed_tilet1.png" width="64" height="80"/>
+ </tileset>
+ <layer name="Background1" width="60" height="40">
+  <properties>
+   <property name="static" value="1"/>
+  </properties>
+  <data encoding="base64" compression="zlib">
+   eJzt2r0KwCAMRlHb0J+17/+ydRFEtItVQ3KHj4QKkoPtZCWEsMWI8TxZ79G7/xwZsGfPLLn3iDmN51bovYr++nhWrrfWUnJvep9lQpUJ+9f62vdrwduqq7yrKl4dc+HFixcvXrwa5sKLFy9evHg1zIW3r6Z48Xo7X7x4LVa8OubCixcvXrx+vVru90f+N5Df73vKC4guHCM=
+  </data>
+ </layer>
+ <layer name="Background2" width="60" height="40">
+  <properties>
+   <property name="static" value="1"/>
+  </properties>
+  <data encoding="base64" compression="zlib">
+   eJzt1jEOwEAIA0Hq5P//vXwhQrI5syu5ZzqqiIiIZvV8ewOHF2/S8OJNGt6d3hpwm9KaZv6T+1al9XZzJ/ftSive+dtk7ZjdNyvN7luVZveNSvO2/xlvxvDiTRpevEkjoowOiE5ANw==
+  </data>
+ </layer>
+ <layer name="Background3" width="60" height="40">
+  <properties>
+   <property name="static" value="1"/>
+  </properties>
+  <data encoding="base64" compression="zlib">
+   eJzt2VsKgCAQheEWELn/3cY8SASJpUebM57/KajAjy4abZtSSvGV/h7AgGqmFHT7qaOyP1ry+mnEu8Wz10KbvXstpJnBa6HMLF4LYWbyWr1mNq8l89VbSwTzVwOzuXXsjObeMe+QUcwJMUcxfRMjrs1K13el5zefx3Q/53rnosjm0nGRzaVk9h/inctkRs0xLGbknMpgRq8hvJtHrJk8mxnXiD3Je8/Dv7xZ/wc9P4etRTSpcifrdgWy
+  </data>
+ </layer>
+ <layer name="Hitboxes" width="60" height="40" visible="0">
+  <data encoding="base64" compression="zlib">
+   eJztlksKgDAMRHME739aycKNWM1P7Uz6oFA/gXmkYkRENuFnG+xZ6e7bYXX2ldM9Fq7cuu4Z+3uwfOf2zWZD81Uy+RB9lWhGVF8lkhPZV/FmRfdVPHkZfBVrZsscgsIos9WRwfnu+soP2fnJx3IeUPCebWv9jFg9lq/t2WxkfZFcD6LfL9sM4vn/Mjh75yt058gMiewcnZnRnLO+kff/pMI3WvMHVb6Zui+p9M3WfkG1b0X9m7zhOzPLt++esc+j/nZYHdkBrbUVoQ==
+  </data>
+ </layer>
+ <layer name="GameObjects" width="60" height="40">
+  <data encoding="base64" compression="zlib">
+   eJztwTEBAAAAwqD1T20Hb6AAAAAAAAAAAAB4DCWAAAE=
+  </data>
+ </layer>
+</map>
