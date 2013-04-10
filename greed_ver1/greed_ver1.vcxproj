@@ -84,6 +84,7 @@
     <ClCompile Include="Greed.cpp" />
     <ClCompile Include="HitCheck.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Pathfinding.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="RenderStatistics.cpp" />
   </ItemGroup>
@@ -91,11 +92,12 @@
     <ClInclude Include="Enemy.h" />
     <ClInclude Include="Greed.h" />
     <ClInclude Include="HitCheck.h" />
+    <ClInclude Include="Pathfinding.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="RenderStatistics.h" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Yam2D\engine\yam2d.vcxproj">
+    <ProjectReference Include="..\..\..\yam2d\engine\yam2d.vcxproj">
       <Project>{48cda762-fea3-4ff9-3d05-b05d6038cad6}</Project>
     </ProjectReference>
   </ItemGroup>

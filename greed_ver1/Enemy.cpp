@@ -1,13 +1,15 @@
 #include "Enemy.h"
 
 
-Enemy::Enemy(int gameObjectType, SpriteSheet* sprite, HitCheck* HitChecker, TmxMap* Map)
+Enemy::Enemy(int gameObjectType, SpriteSheet* sprite, HitCheck* HitChecker, TmxMap* Map, Pathfinding* Pathfinder)
 	: AnimatedSpriteGameObject(gameObjectType,sprite)
 {
 	hitboxCheck = HitChecker;
 	map = Map;
 	setPosition(vec2(20,20));
 	destination = getPosition();
+	pathfinder = Pathfinder;
+
 
 	
 	for( int i=0; i<4; ++i ) // ANIMAATIO
@@ -31,12 +33,12 @@ Enemy::~Enemy(void)
 {
 }
 
-void Enemy::setTarget(vec2 destination)
+void Enemy::setTarget(vec2 goal)
 {
-	this->destination = destination;
+	this->goal = goal;
 }
 
-void Enemy::update( float deltaTime )
+void Enemy::update(float deltaTime)
 {
 	AnimatedSpriteGameObject::update(deltaTime);
 
@@ -44,19 +46,28 @@ void Enemy::update( float deltaTime )
 	float moveSpeed = 5.0f; // tiles / second
 	vec2 enemyMovement;
 
-	if (getKeyState(KEY_SPACE))
-		this->setActiveAnimation((this->getActiveAnimation() + 1)%4);
-	// Rotate gameobject accorging to keys
-	float horizontal = float(getKeyState(KEY_RIGHT)-getKeyState(KEY_LEFT));
+	if(pathfinder->FindPathYam2D(getPosition().x, getPosition().y, goal.x, goal.y,2))
+    {
+            path.clear();
+            path = pathfinder->GetPath();
 
-	// Get move direction from keyboard
-	float vertical = float(getKeyState(KEY_DOWN)-getKeyState(KEY_UP));
+			if (path.size()>1)
+				destination = *path.erase(path.begin());
+    }
+
+	//if (getKeyState(KEY_SPACE))
+	//	this->setActiveAnimation((this->getActiveAnimation() + 1)%4);
+	//// Rotate gameobject accorging to keys
+	//float horizontal = float(getKeyState(KEY_RIGHT)-getKeyState(KEY_LEFT));
+
+	//// Get move direction from keyboard
+	//float vertical = float(getKeyState(KEY_DOWN)-getKeyState(KEY_UP));
 
 	//direction = vec2(horizontal,vertical);
 	direction = (destination - getPosition());
 	direction.Normalize();
 
-	enemyMovement = deltaTime*moveSpeed*direction;
+	enemyMovement = deltaTime * moveSpeed * direction;
 
 	if(enemyMovement.x > abs(enemyMovement.y)) // liikkuu oikealle
 	{
@@ -79,7 +90,11 @@ void Enemy::update( float deltaTime )
 	}
 
 	if (enemyMovement.Length() > (destination - getPosition()).Length())
-		enemyMovement = destination - getPosition();
+    {
+        enemyMovement = destination - getPosition();
+        if (path.size() > 1)
+            destination = *path.erase(path.begin());
+    }
 
 	setPosition(getPosition() + enemyMovement);
 	//setPosition(destination);

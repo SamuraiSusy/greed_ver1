@@ -4,7 +4,7 @@ Layer* createNewLayer(void* userData, Map* map, const std::string& name, float o
 {		
 	esLogMessage("Creating static layer!");
 
-	// Check that if "static"-propery is set to Leyer properties, and if it's value is "true" or 1
+	// Check that if "static"-propery is set to Layer properties, and if it's value is "true" or 1
 	if( properties.hasProperty("static") && 
 		(properties.getLiteralProperty("static")=="true" || properties.getLiteralProperty("static")=="1")  )
 	{
@@ -33,12 +33,14 @@ Greed::Greed()
 	map->getLayer("GameObjects")->addGameObject(player);
 	map->getCamera()->setPosition( vec2(map->getWidth()/2.0f -0.5f, map->getHeight()/2.0f -0.5f)); // Keskitet‰‰n kamera
 
+	pathfinding = new Pathfinding(map,0);
+
 	enemyTexture = new Texture("player.png");
 	enemySprite = SpriteSheet::generateSpriteSheet(enemyTexture,32,32,0,0); // VIHU
 
 	for (int i = 0; i <3 ; i++)
 	{
-		Enemy* enemy = new Enemy(0,enemySprite,HitChecker, map);
+		Enemy* enemy = new Enemy(0,enemySprite,HitChecker, map, pathfinding);
 		enemies.push_back(enemy);
 		enemy->setSize(32,32);
 		enemy->setName("Enemy");
@@ -47,17 +49,14 @@ Greed::Greed()
 	enemies[0]->setPosition(42,16);
 	enemies[1]->setPosition(42,20);
 	enemies[2]->setPosition(42,24);
-
-
-	
 	
 	
 
-	for( int i=0; i<4; ++i ) // ANIMAATIO
+	for(int i=0; i<4; ++i) // ANIMAATIO
 	{
 		std::vector<int> indices;
 		indices.resize(1);
-		for( size_t j=0; j<indices.size(); ++j )
+		for( size_t j = 0; j < indices.size(); ++j )
 		{
 			indices[j] = i + j;
 		}
@@ -83,6 +82,9 @@ void Greed::Update(float DeltaTime)
 	/*map->getCamera()->setPosition(player->getPosition());*/
 	for(int i = 0; i < enemies.size(); i++)
 		enemies[i]->setTarget(player->getPosition());
+
+	/*if(enemies[0]->collidesTo(enemies[1])
+	*/
 }
 
 void Greed::Draw(ESContext *esContext)

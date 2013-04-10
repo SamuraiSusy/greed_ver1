@@ -11,14 +11,18 @@ using namespace yam2d;
 class HitCheck
 {
 public:
-	HitCheck(TmxMap* map);
-	~HitCheck(void);
-	vec2 CheckMapHit(GameObject *character);
-	//vec2 CheckHit(GameObject* LightObject, GameObject* HeavyObject, vec2 Direction);
+        HitCheck(TmxMap* map);
+        ~HitCheck(void);
+        /*Returns a vector where the character should be exept of being inside hitbox*/
+        vec2 CheckMapHit(GameObject *character);
+        /*Returns string GameObjectName if inside gameObject, else returns ""*/
+        std::string GetNameOfObject(GameObject *character);
+        std::string GetNameOfObject(vec2 Position);
 private:
-	Layer::GameObjectList mapHitboxes;
-
-	void distanceToBorder(GameObject *hitbox, GameObject *character, vec2 *whereToMove);
+        Layer::GameObjectList mapHitboxes;
+        Layer::GameObjectList propertyLayer;
+        
+        void distanceToBorder(GameObject *hitbox, GameObject *character, vec2 *whereToMove);
 };
 
 #endif

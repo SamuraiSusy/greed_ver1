@@ -9,6 +9,7 @@
 #include "Player.h"
 #include "Enemy.h"
 #include "HitCheck.h"
+#include "Pathfinding.h"
 
 using namespace yam2d;
 
@@ -29,6 +30,7 @@ private:
 	HitCheck* HitChecker;
 	Texture* enemyTexture;
 	SpriteSheet* enemySprite;
+	Pathfinding* pathfinding;
 };
 
 #endif GREED_H

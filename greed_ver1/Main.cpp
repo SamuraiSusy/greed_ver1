@@ -47,6 +47,7 @@ void update( ESContext* ctx, float deltaTime )
 	{
 		showRS = true;
 	}
+
 	else
 	{
 		showRS = false;
@@ -115,7 +116,7 @@ int main ( int argc, char *argv[] )
 {
 	ESContext esContext;
 	esInitContext ( &esContext );
-	esCreateWindow( &esContext, "Greed", 960, 640, ES_WINDOW_DEFAULT );
+	esCreateWindow( &esContext, "Greed", 960, 640, ES_WINDOW_DEFAULT ); // konsolin koko
    
 	if ( !init ( &esContext ) )
 		return 0;
