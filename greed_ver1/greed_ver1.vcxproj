@@ -81,6 +81,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Enemy.cpp" />
+    <ClCompile Include="Fish.cpp" />
     <ClCompile Include="Greed.cpp" />
     <ClCompile Include="HitCheck.cpp" />
     <ClCompile Include="main.cpp" />
@@ -90,6 +91,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Enemy.h" />
+    <ClInclude Include="Fish.h" />
     <ClInclude Include="Greed.h" />
     <ClInclude Include="HitCheck.h" />
     <ClInclude Include="Pathfinding.h" />
