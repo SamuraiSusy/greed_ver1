@@ -1,0 +1,48 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<logicalClassDesignerModel xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm4="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm5="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/ModelStore" dslVersion="1.0.0.0" Id="51bb47ad-6ad0-448f-80b7-c6c164b83cb8" name="UMLClassDiagram1" linkedPackageId="933b6013-7d97-49a9-808f-9b0685b28c90" xmlns="http://schemas.microsoft.com/dsltools/LogicalClassDesigner">
+  <profileInstances>
+    <packageHasProfileInstances Id="b5e3f9ff-54de-4a69-a776-e324e77ba1f8">
+      <profileInstance Id="91f4b3c1-4ee2-4e37-a3bb-ebec9e618975" name="StandardProfileL2">
+        <elementDefinition Id="e34d544e-0fea-4ed6-ac5e-1b74119ac791" />
+      </profileInstance>
+      <elementDefinition Id="0caec977-1f8c-4ba3-a7db-8cc9ad9cc73b" />
+    </packageHasProfileInstances>
+    <packageHasProfileInstances Id="94cb8a93-2f6f-428c-b9fb-78a0cd37adb0">
+      <profileInstance Id="ec429d88-71cc-4965-a477-fd6526d36034" name="StandardProfileL3">
+        <elementDefinition Id="532ea607-fb19-44b8-8502-3351b05452be" />
+      </profileInstance>
+      <elementDefinition Id="29349502-908c-4fda-9054-c48619c59ed0" />
+    </packageHasProfileInstances>
+  </profileInstances>
+  <packagedElements>
+    <logicalClassDesignerModelHasTypes>
+      <class Id="ce8e0fd6-61f4-4420-beea-ce44f11f2078" name="Kukka" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="51bf5293-53bb-41e2-9f4a-961e4a28373b" />
+        <ownedAttributesInternal>
+          <property Id="2f183f8b-53ac-498f-bb5d-4c88998b97a3" name="vari" isLeaf="false" isStatic="false" isReadOnly="false" isUnique="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+            <elementDefinition Id="75e4e0ee-3719-48a6-8479-a43c676c592f" />
+          </property>
+          <property Id="62125fe9-e036-4e3f-80be-4c57e2074d74" name="laji" isLeaf="false" isStatic="false" isReadOnly="false" isUnique="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+            <elementDefinition Id="afd23972-3fbb-4fdb-9cc3-1fd5a78882b0" />
+          </property>
+          <property Id="6da770fe-52b1-4834-a776-01c5cd7baa91" name="tuoksu" isLeaf="false" isStatic="false" isReadOnly="false" isUnique="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+            <elementDefinition Id="ef8bca77-2d2a-4259-bbd8-783f508f1ce0" />
+          </property>
+        </ownedAttributesInternal>
+      </class>
+    </logicalClassDesignerModelHasTypes>
+    <logicalClassDesignerModelHasTypes>
+      <class Id="83959f7f-83a4-43e4-af7c-e9ab2507c55c" name="Puu" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="952c6f86-1025-4b44-8e94-42a186b637f9" />
+        <ownedAttributesInternal>
+          <property Id="b80094aa-6b9b-47c5-9687-60d7c1ad8591" name="Attribute1" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+            <elementDefinition Id="cabccca2-a4d4-47f5-a5bf-5932319f4d1a" />
+          </property>
+        </ownedAttributesInternal>
+      </class>
+    </logicalClassDesignerModelHasTypes>
+  </packagedElements>
+  <package Id="933b6013-7d97-49a9-808f-9b0685b28c90" name="ModelingProject1">
+    <elementDefinition Id="5fd73901-bed6-4247-bf70-47026eab8f26" />
+  </package>
+</logicalClassDesignerModel>
