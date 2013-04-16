@@ -82,5 +82,5 @@ void RenderStatistics::render(float x, float y)
 		batch->addText(fontTexture, text4, vec2(x + text4->getWidth()/2 + lane,y-4*lane), 0);
 		updateText = false;
 	}
-	batch->render(0.5f);
+	batch->render(1.0f);
 }

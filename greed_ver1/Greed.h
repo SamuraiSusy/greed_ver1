@@ -10,6 +10,7 @@
 #include "Enemy.h"
 #include "HitCheck.h"
 #include "Pathfinding.h"
+#include "Fish.h"
 
 using namespace yam2d;
 
@@ -26,7 +27,11 @@ private:
 	SpriteBatchGroup* batch;
 	TmxMap* map;
 	Player* player;
-	std::vector<Enemy*> enemies;
+	Fish* fish;
+	
+	Texture* fishTexture;
+	SpriteSheet* fishSprite;
+	std::vector<Enemy*> enemies; // jos haluaa tehdä monta
 	HitCheck* HitChecker;
 	Texture* enemyTexture;
 	SpriteSheet* enemySprite;

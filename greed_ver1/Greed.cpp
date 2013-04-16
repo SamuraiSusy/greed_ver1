@@ -18,9 +18,6 @@ Layer* createNewLayer(void* userData, Map* map, const std::string& name, float o
 
 Greed::Greed()
 {
-	batch = new SpriteBatchGroup();
-
-
 	map = new TmxMap();
 	map->registerCreateNewLayerFunc(createNewLayer);
 	map->loadMapFile("greed_level1.tmx");
@@ -32,6 +29,14 @@ Greed::Greed()
 	player->setName("Player");
 	map->getLayer("GameObjects")->addGameObject(player);
 	map->getCamera()->setPosition( vec2(map->getWidth()/2.0f -0.5f, map->getHeight()/2.0f -0.5f)); // Keskitetään kamera
+
+	Texture* fishTexture = new Texture("kala.png");
+	SpriteSheet* fishSprite = SpriteSheet::generateSpriteSheet(fishTexture,16,16,0,0); // PELAAJA
+	fish = new Fish(0, fishTexture, player, HitChecker);
+	fish->setSize(16,16);
+	fish->setName("Fish");
+	map->getLayer("GameObjects")->addGameObject(fish);
+	
 
 	pathfinding = new Pathfinding(map,0);
 
@@ -71,9 +76,9 @@ Greed::Greed()
 
 Greed::~Greed()
 {
-	delete batch;
 	delete map;
 	delete HitChecker;
+	delete pathfinding;
 }
 
 void Greed::Update(float DeltaTime)
@@ -89,11 +94,7 @@ void Greed::Update(float DeltaTime)
 
 void Greed::Draw(ESContext *esContext)
 {
-	batch->clear();
-	
 	map->getCamera()->setScreenSize(esContext->width,esContext->height); 
 
 	map->render();
-
-	batch->render();
 }

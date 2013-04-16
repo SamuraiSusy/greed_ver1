@@ -8,7 +8,7 @@
    <property name="static" value="1"/>
   </properties>
   <data encoding="base64" compression="zlib">
-   eJzt2r0KwCAMRlHb0J+17/+ydRFEtItVQ3KHj4QKkoPtZCWEsMWI8TxZ79G7/xwZsGfPLLn3iDmN51bovYr++nhWrrfWUnJvep9lQpUJ+9f62vdrwduqq7yrKl4dc+HFixcvXrwa5sKLFy9evHg1zIW3r6Z48Xo7X7x4LVa8OubCixcvXrx+vVru90f+N5Df73vKC4guHCM=
+   eJzt2kELgCAMhmFrlF3r///YvAgi2sXU4d7Dx0aC7ME6mTjnthBZPHfSW/TuP0c67NkyS+p9Qs7Fcyn0+qz3H8/y9dpaTOqN77MMqDJg/1Jf+n5X8NbqLO+silfHXHjx4sWLF6+GufDixYsXL14Nc+FtqzFWvNbOFy/eFSteHXPhxYsXL1673sPNv9vv/d9Aer9vKS8Bshw9
   </data>
  </layer>
  <layer name="Background2" width="60" height="40">
@@ -37,4 +37,7 @@
    eJztwTEBAAAAwqD1T20Hb6AAAAAAAAAAAAB4DCWAAAE=
   </data>
  </layer>
+ <objectgroup name="Properties" width="60" height="40">
+  <object name="Goal" x="80" y="320" width="48" height="48"/>
+ </objectgroup>
 </map>
