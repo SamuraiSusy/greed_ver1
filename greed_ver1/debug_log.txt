@@ -4,5 +4,3 @@ Creating static layer!
 Creating static layer!
 Creating static layer!
 Creating static layer!
-Error: [yam2d::`anonymous-namespace'::RefCounter::~RefCounter] 2 Memory leaks detected!
-

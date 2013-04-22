@@ -7,10 +7,10 @@
 
 using namespace yam2d;
 
-class Fish : public SpriteGameObject
+class Fish : public AnimatedSpriteGameObject
 {
 public:
-	Fish(int gameObjectType, Texture* texture, Player* player, HitCheck* hitboxCheck);
+	Fish(int gameObjectType, SpriteSheet* spriteSheet, Player* player, HitCheck* hitboxCheck);
 	~Fish(void);
 
 	void update(float deltaTime);

@@ -1,6 +1,8 @@
 #include "Player.h"
 
 
+int playerAnimation = 0;
+
 Player::Player(int gameObjectType, SpriteSheet* sprite, HitCheck* HitChecker, TmxMap* Map)
 	: AnimatedSpriteGameObject(gameObjectType,sprite)
 {
@@ -42,22 +44,29 @@ void Player::update( float deltaTime )
 
 	if(playerMovement.x > abs(playerMovement.y)) // liikkuu oikealle
 	{
-		this->setActiveAnimation(3);
+		if(this->getActiveAnimation()!= 0)
+		this->setActiveAnimation(0);
 	}
-
-	if(playerMovement.x < -abs(playerMovement.y)) // liikkuu vasemmalle
+	else if(playerMovement.x < -abs(playerMovement.y)) // liikkuu vasemmalle
 	{
+		if(this->getActiveAnimation()!= 2)
 		this->setActiveAnimation(2);
 	}
 
-	if(playerMovement.y > abs(playerMovement.x)) // liikkuu alas
+	else if(playerMovement.y > abs(playerMovement.x)) // liikkuu alas
 	{
-		this->setActiveAnimation(0);
+		if(this->getActiveAnimation()!= 4)
+		this->setActiveAnimation(4);
 	}
 
-	if(playerMovement.y < -abs(playerMovement.x)) // liikkuu ylös
+	else if(playerMovement.y < -abs(playerMovement.x)) // liikkuu ylös
 	{
-		this->setActiveAnimation(1);
+		if(this->getActiveAnimation()!= 6)
+		this->setActiveAnimation(6);
+	}
+	else
+	{
+		this->setActiveAnimation(this->getActiveAnimation());
 	}
 
 	if (playerMovement.Length() > (destination - getPosition()).Length())

@@ -22,7 +22,7 @@ Greed::Greed()
 	map->registerCreateNewLayerFunc(createNewLayer);
 	map->loadMapFile("greed_level1.tmx");
 	HitChecker = new HitCheck(map);
-	Texture* playerTexture = new Texture("player.png");
+	Texture* playerTexture = new Texture("piplup.png");
 	SpriteSheet* playerSprite = SpriteSheet::generateSpriteSheet(playerTexture,32,32,0,0); // PELAAJA
 	player = new Player(0,playerSprite,HitChecker, map);
 	player->setSize(32,32);
@@ -30,20 +30,20 @@ Greed::Greed()
 	map->getLayer("GameObjects")->addGameObject(player);
 	map->getCamera()->setPosition( vec2(map->getWidth()/2.0f -0.5f, map->getHeight()/2.0f -0.5f)); // Keskitetään kamera
 
-	Texture* fishTexture = new Texture("kala.png");
-	SpriteSheet* fishSprite = SpriteSheet::generateSpriteSheet(fishTexture,16,16,0,0); // PELAAJA
-	fish = new Fish(0, fishTexture, player, HitChecker);
-	fish->setSize(16,16);
+	Texture* fishTexture = new Texture("feebas.png");
+	SpriteSheet* fishSprite = SpriteSheet::generateSpriteSheet(fishTexture,32,32,0,0);
+	fish = new Fish(0, fishSprite, player, HitChecker);
+	fish->setSize(32,32);
 	fish->setName("Fish");
 	map->getLayer("GameObjects")->addGameObject(fish);
 	
 
 	pathfinding = new Pathfinding(map,0);
 
-	enemyTexture = new Texture("player.png");
+	enemyTexture = new Texture("walrein.png");
 	enemySprite = SpriteSheet::generateSpriteSheet(enemyTexture,32,32,0,0); // VIHU
 
-	for (int i = 0; i <3 ; i++)
+	for (int i = 0; i < 3 ; i++)
 	{
 		Enemy* enemy = new Enemy(0,enemySprite,HitChecker, map, pathfinding);
 		enemies.push_back(enemy);
@@ -57,21 +57,46 @@ Greed::Greed()
 	
 	
 
-	for(int i=0; i<4; ++i) // ANIMAATIO
+	for(int i = 0; i < 8; ++i) // ANIMAATIO
 	{
 		std::vector<int> indices;
-		indices.resize(1);
+		indices.resize(2);
+		float fps = 10.0f;
+
 		for( size_t j = 0; j < indices.size(); ++j )
 		{
 			indices[j] = i + j;
 		}
 
 		// Add looping animation.
-		player->addAnimation(i, SpriteAnimation::SpriteAnimationClip(indices,1, 1.0f, true));
+		player->addAnimation(i, SpriteAnimation::SpriteAnimationClip(indices, fps, 1.0f, true));
 	}
 
 	player->setActiveAnimation(0);
 }
+
+//std::vector<int> eindices;
+//		indices.resize(3);
+//
+//		float fps = 4.0f;
+//		
+//		for( size_t j=0; j<indices.size(); ++j )indices[j] = 0 + j;
+//		gameObject->addAnimation(0, SpriteAnimation::SpriteAnimationClip(indices,fps, 2.0f, true));
+//
+//		for( size_t j=0; j<indices.size(); ++j )indices[j] = 3 + j;
+//		gameObject->addAnimation(2, SpriteAnimation::SpriteAnimationClip(indices,fps, 2.0f, true));
+//		
+//		indices.resize(1);
+//		
+//		for( size_t j=0; j<indices.size(); ++j )indices[j] = 6 + j;
+//		gameObject->addAnimation(1, SpriteAnimation::SpriteAnimationClip(indices,fps, 2.0f, true));
+//		
+//		for( size_t j=0; j<indices.size(); ++j )indices[j] = 7 + j;
+//		gameObject->addAnimation(3, SpriteAnimation::SpriteAnimationClip(indices,fps, 2.0f, true));
+//	
+//
+//
+//		gameObject->setActiveAnimation(0);
 
 
 Greed::~Greed()
