@@ -18,8 +18,9 @@ HitCheck::~HitCheck(void)
 // Public
 
 // Check if a character hits to a map hitbox and return the position where to move if so
-vec2 HitCheck::CheckMapHit(GameObject *character)
+vec2 HitCheck::CheckMapHit(GameObject *character, float borderInPixels)
 {
+        character->setSize(character->getSize() - vec2(borderInPixels));
         vec2 newPos = character->getPosition();
         std::vector<int> hits;
 
@@ -47,6 +48,7 @@ vec2 HitCheck::CheckMapHit(GameObject *character)
                 }
         }
 
+        character->setSize(character->getSize() + vec2(borderInPixels));
         return newPos;
 }
 

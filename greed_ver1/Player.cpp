@@ -22,7 +22,7 @@ void Player::update( float deltaTime )
 	AnimatedSpriteGameObject::update(deltaTime);
 
 	float rotationSpeed = 1.0f; // Radians / second
-	float moveSpeed = 8.0f; // tiles / second
+	float moveSpeed = 30.0f; // tiles / second
 	vec2 playerMovement;
 
 	if (getKeyState(KEY_SPACE))
@@ -75,7 +75,7 @@ void Player::update( float deltaTime )
 	setPosition(getPosition() + playerMovement);
 	//setPosition(destination);
 
-	vec2 hit = hitboxCheck->CheckMapHit(this);
+	vec2 hit = hitboxCheck->CheckMapHit(this,16);
 
 	if(hit.Length() > 0)
 	{

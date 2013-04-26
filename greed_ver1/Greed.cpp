@@ -18,6 +18,7 @@ Layer* createNewLayer(void* userData, Map* map, const std::string& name, float o
 
 Greed::Greed()
 {
+	enemies = new std::vector<Enemy*>;
 	map = new TmxMap();
 	map->registerCreateNewLayerFunc(createNewLayer);
 	map->loadMapFile("greed_level1.tmx");
@@ -30,30 +31,30 @@ Greed::Greed()
 	map->getLayer("GameObjects")->addGameObject(player);
 	map->getCamera()->setPosition( vec2(map->getWidth()/2.0f -0.5f, map->getHeight()/2.0f -0.5f)); // Keskitetään kamera
 
-	Texture* fishTexture = new Texture("feebas.png");
-	SpriteSheet* fishSprite = SpriteSheet::generateSpriteSheet(fishTexture,32,32,0,0);
-	fish = new Fish(0, fishSprite, player, HitChecker);
-	fish->setSize(32,32);
+	Texture* fishTexture = new Texture("poffin.png");
+	SpriteSheet* fishSprite = SpriteSheet::generateSpriteSheet(fishTexture,20,14,0,0);
+	fish = new Fish(0, fishTexture, player, HitChecker);
+	fish->setSize(20,14);
 	fish->setName("Fish");
 	map->getLayer("GameObjects")->addGameObject(fish);
 	
 
-	pathfinding = new Pathfinding(map,0);
+	pathfinding = new Pathfinding(map);
 
 	enemyTexture = new Texture("walrein.png");
 	enemySprite = SpriteSheet::generateSpriteSheet(enemyTexture,32,32,0,0); // VIHU
 
 	for (int i = 0; i < 3 ; i++)
 	{
-		Enemy* enemy = new Enemy(0,enemySprite,HitChecker, map, pathfinding);
-		enemies.push_back(enemy);
+		Enemy* enemy = new Enemy(0,enemySprite,HitChecker, map, pathfinding, enemies);
+		enemies->push_back(enemy);
 		enemy->setSize(32,32);
 		enemy->setName("Enemy");
 		map->getLayer("GameObjects")->addGameObject(enemy);
 	}
-	enemies[0]->setPosition(42,16);
-	enemies[1]->setPosition(42,20);
-	enemies[2]->setPosition(42,24);
+	(*enemies)[0]->setPosition(42,16);
+	(*enemies)[1]->setPosition(42,20);
+	(*enemies)[2]->setPosition(42,24);
 	
 	
 
@@ -75,32 +76,10 @@ Greed::Greed()
 	player->setActiveAnimation(0);
 }
 
-//std::vector<int> eindices;
-//		indices.resize(3);
-//
-//		float fps = 4.0f;
-//		
-//		for( size_t j=0; j<indices.size(); ++j )indices[j] = 0 + j;
-//		gameObject->addAnimation(0, SpriteAnimation::SpriteAnimationClip(indices,fps, 2.0f, true));
-//
-//		for( size_t j=0; j<indices.size(); ++j )indices[j] = 3 + j;
-//		gameObject->addAnimation(2, SpriteAnimation::SpriteAnimationClip(indices,fps, 2.0f, true));
-//		
-//		indices.resize(1);
-//		
-//		for( size_t j=0; j<indices.size(); ++j )indices[j] = 6 + j;
-//		gameObject->addAnimation(1, SpriteAnimation::SpriteAnimationClip(indices,fps, 2.0f, true));
-//		
-//		for( size_t j=0; j<indices.size(); ++j )indices[j] = 7 + j;
-//		gameObject->addAnimation(3, SpriteAnimation::SpriteAnimationClip(indices,fps, 2.0f, true));
-//	
-//
-//
-//		gameObject->setActiveAnimation(0);
-
 
 Greed::~Greed()
 {
+	delete enemies;
 	delete map;
 	delete HitChecker;
 	delete pathfinding;
@@ -109,17 +88,17 @@ Greed::~Greed()
 void Greed::Update(float DeltaTime)
 {
 	map->update(DeltaTime);
-	/*map->getCamera()->setPosition(player->getPosition());*/
-	for(int i = 0; i < enemies.size(); i++)
-		enemies[i]->setTarget(player->getPosition());
 
-	/*if(enemies[0]->collidesTo(enemies[1])
-	*/
+	for(int i = 0; i < enemies->size(); i++)
+		(*enemies)[i]->setTarget(player->getPosition());
 }
 
 void Greed::Draw(ESContext *esContext)
 {
 	map->getCamera()->setScreenSize(esContext->width,esContext->height); 
+
+
+	// muuta ruudun kokoa jos jää aikaa
 
 	map->render();
 }

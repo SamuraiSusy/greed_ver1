@@ -31,7 +31,7 @@ private:
 	
 	Texture* fishTexture;
 	SpriteSheet* fishSprite;
-	std::vector<Enemy*> enemies; // jos haluaa tehdä monta
+	std::vector<Enemy*>* enemies; // jos haluaa tehdä monta
 	HitCheck* HitChecker;
 	Texture* enemyTexture;
 	SpriteSheet* enemySprite;

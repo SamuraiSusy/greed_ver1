@@ -1,8 +1,11 @@
 #include "Enemy.h"
 
+#include <iostream>
 
-Enemy::Enemy(int gameObjectType, SpriteSheet* sprite, HitCheck* HitChecker, TmxMap* Map, Pathfinding* Pathfinder)
-	: AnimatedSpriteGameObject(gameObjectType,sprite)
+
+Enemy::Enemy(int gameObjectType, SpriteSheet* sprite, HitCheck* HitChecker, TmxMap* Map, Pathfinding* Pathfinder, std::vector<Enemy*> *enemies)
+	: AnimatedSpriteGameObject(gameObjectType,sprite),
+	  enemies(enemies)
 {
 	hitboxCheck = HitChecker;
 	map = Map;
@@ -10,21 +13,21 @@ Enemy::Enemy(int gameObjectType, SpriteSheet* sprite, HitCheck* HitChecker, TmxM
 	destination = getPosition();
 	pathfinder = Pathfinder;
 
-
-	
-	for( int i=0; i<4; ++i ) // ANIMAATIO
+for(int i = 0; i < 8; ++i) // ANIMAATIO
 	{
 		std::vector<int> indices;
-		indices.resize(1);
-		for( size_t j=0; j<indices.size(); ++j )
+		indices.resize(2);
+		float fps = 10.0f;
+
+		for( size_t j = 0; j < indices.size(); ++j )
 		{
 			indices[j] = i + j;
 		}
 
 		// Add looping animation.
-		addAnimation(i, SpriteAnimation::SpriteAnimationClip(indices,1, 1.0f, true));
+		addAnimation(i, SpriteAnimation::SpriteAnimationClip(indices, fps, 1.0f, true));
 	}
-	
+
 	setActiveAnimation(0);
 }
 
@@ -51,58 +54,65 @@ void Enemy::update(float deltaTime)
             path.clear();
             path = pathfinder->GetPath();
 
+			destination = path[0];
 			if (path.size()>1)
-				destination = *path.erase(path.begin());
+				*path.erase(path.begin());
     }
 
-	//if (getKeyState(KEY_SPACE))
-	//	this->setActiveAnimation((this->getActiveAnimation() + 1)%4);
-	//// Rotate gameobject accorging to keys
-	//float horizontal = float(getKeyState(KEY_RIGHT)-getKeyState(KEY_LEFT));
-
-	//// Get move direction from keyboard
-	//float vertical = float(getKeyState(KEY_DOWN)-getKeyState(KEY_UP));
-
-	//direction = vec2(horizontal,vertical);
 	direction = (destination - getPosition());
 	direction.Normalize();
 
 	enemyMovement = deltaTime * moveSpeed * direction;
 
+
 	if(enemyMovement.x > abs(enemyMovement.y)) // liikkuu oikealle
 	{
-		this->setActiveAnimation(3);
+		if(this->getActiveAnimation()!= 4)
+		this->setActiveAnimation(4);
+	}
+	else if(enemyMovement.x < -abs(enemyMovement.y)) // liikkuu vasemmalle
+	{
+		if(this->getActiveAnimation()!= 6)
+		this->setActiveAnimation(6);
 	}
 
-	if(enemyMovement.x < -abs(enemyMovement.y)) // liikkuu vasemmalle
+	else if(enemyMovement.y > abs(enemyMovement.x)) // liikkuu alas
 	{
-		this->setActiveAnimation(2);
-	}
-
-	if(enemyMovement.y > abs(enemyMovement.x)) // liikkuu alas
-	{
+		if(this->getActiveAnimation()!= 0)
 		this->setActiveAnimation(0);
 	}
 
-	if(enemyMovement.y < -abs(enemyMovement.x)) // liikkuu ylös
+	else if(enemyMovement.y < -abs(enemyMovement.x)) // liikkuu ylös
 	{
-		this->setActiveAnimation(1);
+		if(this->getActiveAnimation()!= 2)
+		this->setActiveAnimation(2);
+	}
+	else
+	{
+		this->setActiveAnimation(this->getActiveAnimation());
 	}
 
 	if (enemyMovement.Length() > (destination - getPosition()).Length())
-    {
-        enemyMovement = destination - getPosition();
-        if (path.size() > 1)
-            destination = *path.erase(path.begin());
-    }
+		enemyMovement = destination - getPosition();
 
 	setPosition(getPosition() + enemyMovement);
-	//setPosition(destination);
+
 
 	vec2 hit = hitboxCheck->CheckMapHit(this);
 
 	if(hit.Length() > 0)
 	{
 		setPosition(hit);
+	}
+
+	for(int i = 0; i < enemies->size(); ++i)
+	{
+		if((*enemies)[i] != this)
+		{
+			std::cout<<"Hard"<<std::endl;
+			vec2 dodge = getPosition();
+			hitboxCheck->distanceToBorder((*enemies)[i],this,&dodge);
+			setPosition(dodge);
+		}
 	}
 }

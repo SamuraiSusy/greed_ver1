@@ -11,11 +11,12 @@ using namespace yam2d;
 class Enemy : public AnimatedSpriteGameObject
 {
 public:
-	Enemy(int gameObjectType, SpriteSheet* sprite, HitCheck* HitChecker, TmxMap* Map, Pathfinding* Pathfinder);
+	Enemy(int gameObjectType, SpriteSheet* sprite, HitCheck* HitChecker, TmxMap* Map, Pathfinding* Pathfinder, std::vector<Enemy*> *enemies);
 	virtual ~Enemy(void);
 	void setTarget(vec2 goal); 
 	virtual void update(float deltaTime);
 private:
+	std::vector<Enemy*>* enemies;
 	vec2 goal;
 	vec2 direction;
 	vec2 destination;
