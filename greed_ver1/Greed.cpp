@@ -22,6 +22,13 @@ Greed::Greed()
 	map = new TmxMap();
 	map->registerCreateNewLayerFunc(createNewLayer);
 	map->loadMapFile("greed_level1.tmx");
+
+	Texture* endscreenTexture = new Texture("feebas.png");
+	endscreen = new SpriteGameObject(0, endscreenTexture);
+	map->getLayer("endScreen")->addGameObject(endscreen);
+	endscreen->setSize(0,0);
+	endscreen->setPosition(0,0);
+
 	HitChecker = new HitCheck(map);
 	Texture* playerTexture = new Texture("piplup.png");
 	SpriteSheet* playerSprite = SpriteSheet::generateSpriteSheet(playerTexture,32,32,0,0); // PELAAJA
@@ -88,6 +95,11 @@ Greed::~Greed()
 void Greed::Update(float DeltaTime)
 {
 	map->update(DeltaTime);
+
+	if(fish->isGameFinished())
+	{
+		endscreen->setSize(960, 640);
+	}
 
 	for(int i = 0; i < enemies->size(); i++)
 		(*enemies)[i]->setTarget(player->getPosition());

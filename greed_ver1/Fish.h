@@ -15,9 +15,12 @@ public:
 
 	void update(float deltaTime);
 
+	bool isGameFinished();
+
 private:
 	Player* player;
 	HitCheck* hitboxCheck;
+	bool finishedGame;
 };
 
 

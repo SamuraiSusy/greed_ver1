@@ -105,14 +105,14 @@ void Enemy::update(float deltaTime)
 		setPosition(hit);
 	}
 
-	for(int i = 0; i < enemies->size(); ++i)
-	{
-		if((*enemies)[i] != this)
-		{
-			std::cout<<"Hard"<<std::endl;
-			vec2 dodge = getPosition();
-			hitboxCheck->distanceToBorder((*enemies)[i],this,&dodge);
-			setPosition(dodge);
-		}
-	}
+	//for(int i = 0; i < enemies->size(); ++i)
+	//{
+	//	if((*enemies)[i] != this)
+	//	{
+	//		std::cout<<"Hard"<<std::endl;
+	//		vec2 dodge = getPosition();
+	//		hitboxCheck->distanceToBorder((*enemies)[i],this,&dodge);
+	//		setPosition(dodge);
+	//	}
+	//}
 }

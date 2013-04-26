@@ -29,6 +29,7 @@ private:
 	Player* player;
 	Fish* fish;
 	
+	SpriteGameObject* endscreen;
 	Texture* fishTexture;
 	SpriteSheet* fishSprite;
 	std::vector<Enemy*>* enemies; // jos haluaa tehdä monta

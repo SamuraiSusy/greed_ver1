@@ -40,4 +40,9 @@
  <objectgroup name="Properties" width="60" height="40">
   <object name="Goal" x="80" y="320" width="48" height="48"/>
  </objectgroup>
+ <layer name="endScreen" width="60" height="40">
+  <data encoding="base64" compression="zlib">
+   eJztwTEBAAAAwqD1T20Hb6AAAAAAAAAAAAB4DCWAAAE=
+  </data>
+ </layer>
 </map>
