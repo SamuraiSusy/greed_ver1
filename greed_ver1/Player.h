@@ -14,11 +14,18 @@ public:
 	virtual ~Player(void);
 
 	virtual void update( float deltaTime );
+
+	float enemyPosition, playerPosition;
+	bool hasEnemyCaughtPlayer();
+
 private:
 	vec2 direction;
 	vec2 destination;
 	HitCheck* hitboxCheck;
 	TmxMap* map;
+	Player* player;
+	Enemy* enemy;
+	bool enemyCaughtPlayer;
 };
 
 #endif

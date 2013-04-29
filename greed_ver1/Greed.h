@@ -30,6 +30,7 @@ private:
 	Fish* fish;
 	
 	SpriteGameObject* endscreen;
+	SpriteGameObject* gameover;
 	Texture* fishTexture;
 	SpriteSheet* fishSprite;
 	std::vector<Enemy*>* enemies; // jos haluaa tehdä monta
@@ -39,4 +40,4 @@ private:
 	Pathfinding* pathfinding;
 };
 
-#endif GREED_H
+#endif

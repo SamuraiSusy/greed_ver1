@@ -1,5 +1,6 @@
 #include "Greed.h"
 
+
 Layer* createNewLayer(void* userData, Map* map, const std::string& name, float opacity, bool visible, const PropertySet& properties)
 {		
 	esLogMessage("Creating static layer!");
@@ -23,11 +24,17 @@ Greed::Greed()
 	map->registerCreateNewLayerFunc(createNewLayer);
 	map->loadMapFile("greed_level1.tmx");
 
-	Texture* endscreenTexture = new Texture("feebas.png");
+	Texture* endscreenTexture = new Texture("win.png");
 	endscreen = new SpriteGameObject(0, endscreenTexture);
 	map->getLayer("endScreen")->addGameObject(endscreen);
 	endscreen->setSize(0,0);
-	endscreen->setPosition(0,0);
+	endscreen->setPosition(29,19);
+
+	Texture* gameoverTexture = new Texture("gameover.png");
+	gameover = new SpriteGameObject(0, gameoverTexture);
+	map->getLayer("endScreen")->addGameObject(gameover);
+	gameover->setSize(0,0);
+	gameover->setPosition(29,19);
 
 	HitChecker = new HitCheck(map);
 	Texture* playerTexture = new Texture("piplup.png");
@@ -95,6 +102,10 @@ Greed::~Greed()
 void Greed::Update(float DeltaTime)
 {
 	map->update(DeltaTime);
+
+	/*if(player->hasEnemyCaughtPlayer)
+		gameover->setSize(960, 640);*/
+	
 
 	if(fish->isGameFinished())
 	{
