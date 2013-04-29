@@ -60,7 +60,7 @@ Greed::Greed()
 
 	for (int i = 0; i < 3 ; i++)
 	{
-		Enemy* enemy = new Enemy(0,enemySprite,HitChecker, map, pathfinding, enemies);
+		Enemy* enemy = new Enemy(0,enemySprite, 0, HitChecker, map, pathfinding, enemies);
 		enemies->push_back(enemy);
 		enemy->setSize(32,32);
 		enemy->setName("Enemy");

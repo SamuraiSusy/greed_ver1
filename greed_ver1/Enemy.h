@@ -5,16 +5,19 @@
 #include <AnimatedSpriteGameObject.h>
 #include <Input.h>
 #include "Pathfinding.h"
+#include "Player.h"
+
 
 using namespace yam2d;
 
 class Enemy : public AnimatedSpriteGameObject
 {
 public:
-	Enemy(int gameObjectType, SpriteSheet* sprite, HitCheck* HitChecker, TmxMap* Map, Pathfinding* Pathfinder, std::vector<Enemy*> *enemies);
+	Enemy(int gameObjectType, SpriteSheet* sprite, Player* player, HitCheck* HitChecker, TmxMap* Map, Pathfinding* Pathfinder, std::vector<Enemy*> *enemies);
 	virtual ~Enemy(void);
 	void setTarget(vec2 goal); 
 	virtual void update(float deltaTime);
+
 private:
 	std::vector<Enemy*>* enemies;
 	vec2 goal;

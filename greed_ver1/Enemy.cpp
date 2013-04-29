@@ -3,7 +3,7 @@
 #include <iostream>
 
 
-Enemy::Enemy(int gameObjectType, SpriteSheet* sprite, HitCheck* HitChecker, TmxMap* Map, Pathfinding* Pathfinder, std::vector<Enemy*> *enemies)
+Enemy::Enemy(int gameObjectType, SpriteSheet* sprite, Player* player, HitCheck* HitChecker, TmxMap* Map, Pathfinding* Pathfinder, std::vector<Enemy*> *enemies)
 	: AnimatedSpriteGameObject(gameObjectType,sprite),
 	  enemies(enemies)
 {

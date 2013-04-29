@@ -1,4 +1,5 @@
 #include "Player.h"
+#include "Enemy.h"
 
 
 int playerAnimation = 0;
@@ -81,14 +82,4 @@ void Player::update( float deltaTime )
 	{
 		setPosition(hit);
 	}
-
-	/*if(hitboxCheck->GetNameOfObject(player) == hitboxCheck->GetNameOfObject(enemy) && getSize() == vec2(0,0))
-	{
-		enemyCaughtPlayer = true;
-	}*/
-}
-
-bool Player::hasEnemyCaughtPlayer()
-{
-	return enemyCaughtPlayer;
 }
